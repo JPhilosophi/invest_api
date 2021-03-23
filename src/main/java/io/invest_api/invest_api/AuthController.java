@@ -1,8 +1,6 @@
 package io.invest_api.invest_api;
 
 import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,14 +23,15 @@ public class AuthController {
 
         RegisterRequest tinkoff = new RegisterRequest("Tinkoff");
 
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        //MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         //map.add("brokerAccountType", "Tinkoff");
 
-        HttpEntity<RegisterRequest> entity = new HttpEntity<RegisterRequest>(tinkoff, httpHeaders);
+        HttpEntity<RegisterRequest> entity = new HttpEntity<>(tinkoff, httpHeaders);
 
         //HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(map, httpHeaders);
 
         ResponseEntity<ResponseRegistrer> exchange = restTemplate.exchange(url, HttpMethod.POST, entity, ResponseRegistrer.class);
+        
         return exchange;
     }
 }
